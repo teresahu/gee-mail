@@ -1,29 +1,42 @@
 .message {
   margin: 10px auto;
   width: 80%;
-  display: table;
+  /*display: table;
   table-layout: fixed;
-  border-spacing: 10px;
+  border-spacing: 10px;*/
   text-align: center;
   border-bottom: 1px solid #ccc;
 }
 
 .date, .subject, .sender {
-  display: table-cell;
+  /*display: table-cell;*/
+  align: center;
+  float: left;
+  margin: 10px 40px;
+  width: 200px;
 }
 
 .message a {
   text-decoration: none;
 }
 
+.clear {
+  clear: both;
+}
+
 .body {
+  width: 100%;
   display: none;
+  padding: 20px 10px 10px 10px;
+  border-top: 1px solid #ccc;
+  margin: 10px;
 }
 
 body {
   width: 100%;
+  margin: 0;
 }
 
 header h1{
-  text-align: center;
+  margin-left:33%;
 }

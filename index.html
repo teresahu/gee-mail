@@ -13,11 +13,13 @@
 						var docFrag = document.createDocumentFragment()
 						var aTag = document.createElement("a");
 						aTag.setAttribute('href', '#')
+						aTag.className = "link-"+i
 						aTag.appendChild(createDiv(window.geemails[i].subject, "subject"))
 						var parents = [
 							createDiv(window.geemails[i].date.toLocaleDateString(), "date"),
 							aTag,
 							createDiv(window.geemails[i].sender, "sender"),
+							createDiv(" ", "clear"),
 							createDiv(window.geemails[i].body, "body body-"+i)
 						]
 						for (var j=0; j<parents.length; j++){
