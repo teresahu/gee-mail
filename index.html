@@ -9,14 +9,16 @@
 
 				function displayGeemails() {
 					for (i=0; i<window.geemails.length; i++) {
-						var div = document.createElement("div")
-						div.className = "message"
+						var div = createDiv("", "message")
 						var docFrag = document.createDocumentFragment()
+						var aTag = document.createElement("a");
+						aTag.setAttribute('href', '#')
+						aTag.appendChild(createDiv(window.geemails[i].subject, "subject"))
 						var parents = [
 							createDiv(window.geemails[i].date.toLocaleDateString(), "date"),
-							createDiv(window.geemails[i].subject, "subject"),
+							aTag,
 							createDiv(window.geemails[i].sender, "sender"),
-							createDiv(window.geemails[i].body, "body")
+							createDiv(window.geemails[i].body, "body body-"+i)
 						]
 						for (var j=0; j<parents.length; j++){
 							docFrag.appendChild(parents[j])
@@ -31,6 +33,7 @@
 					d.appendChild(document.createTextNode(text))
 					return d;
 				}
+
       };
     </script>
 		<title>GeeMail</title>

@@ -5,10 +5,15 @@
   table-layout: fixed;
   border-spacing: 10px;
   text-align: center;
+  border-bottom: 1px solid #ccc;
 }
 
 .date, .subject, .sender {
   display: table-cell;
+}
+
+.message a {
+  text-decoration: none;
 }
 
 .body {
