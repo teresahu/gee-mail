@@ -5,9 +5,31 @@
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE.
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+    		displayGeemails()
 
+				function displayGeemails() {
+					for (i=0; i<window.geemails.length; i++) {
+						var div = document.createElement("div")
+						div.className = "message"
+						var docFrag = document.createDocumentFragment()
+						var parents = [
+							createP(window.geemails[i].date),
+							createP(window.geemails[i].subject),
+							createP(window.geemails[i].sender),
+							createP(window.geemails[i].body)
+						]
+						for (var j=0; j<parents.length; j++){
+							docFrag.appendChild(parents[j])
+						}
+						div.appendChild(docFrag)
+						document.body.appendChild(div)
+						}
+					}
+				function createP(text) {
+					var p = document.createElement("p")
+					p.appendChild(document.createTextNode(text))
+					return p;
+				}
       };
     </script>
 		<title>GeeMail</title>
@@ -17,7 +39,6 @@
 			<h1>Welcome to GeeMail</h1>
 		</header>
 		<div class="container" id="main">
-			Build Me!
 		</div>
 	</body>
 </html>
