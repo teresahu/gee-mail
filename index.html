@@ -13,10 +13,10 @@
 						div.className = "message"
 						var docFrag = document.createDocumentFragment()
 						var parents = [
-							createP(window.geemails[i].date),
-							createP(window.geemails[i].subject),
-							createP(window.geemails[i].sender),
-							createP(window.geemails[i].body)
+							createDiv(window.geemails[i].date.toLocaleDateString(), "date"),
+							createDiv(window.geemails[i].subject, "subject"),
+							createDiv(window.geemails[i].sender, "sender"),
+							createDiv(window.geemails[i].body, "body")
 						]
 						for (var j=0; j<parents.length; j++){
 							docFrag.appendChild(parents[j])
@@ -25,10 +25,11 @@
 						document.body.appendChild(div)
 						}
 					}
-				function createP(text) {
-					var p = document.createElement("p")
-					p.appendChild(document.createTextNode(text))
-					return p;
+				function createDiv(text, name) {
+					var d = document.createElement("div")
+					d.className = name
+					d.appendChild(document.createTextNode(text))
+					return d;
 				}
       };
     </script>
@@ -36,9 +37,7 @@
 	</head>
 	<body>
 		<header>
-			<h1>Welcome to GeeMail</h1>
+			<h1>Welcome to GeeMail!</h1>
 		</header>
-		<div class="container" id="main">
-		</div>
 	</body>
 </html>

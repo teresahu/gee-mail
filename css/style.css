@@ -1,3 +1,24 @@
 .message {
-  margin: 50px auto;
+  margin: 10px auto;
+  width: 80%;
+  display: table;
+  table-layout: fixed;
+  border-spacing: 10px;
+  text-align: center;
+}
+
+.date, .subject, .sender {
+  display: table-cell;
+}
+
+.body {
+  display: none;
+}
+
+body {
+  width: 100%;
+}
+
+header h1{
+  text-align: center;
 }
