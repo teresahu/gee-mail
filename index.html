@@ -9,18 +9,18 @@
 
 				function displayGeemails() {
 					for (i=0; i<window.geemails.length; i++) {
-						var div = createDiv("", "message")
+						var div = createDiv("", "message", "")
 						var docFrag = document.createDocumentFragment()
-						var aTag = document.createElement("a");
-						aTag.setAttribute('href', '#')
-						aTag.className = "link-"+i
-						aTag.appendChild(createDiv(window.geemails[i].subject, "subject"))
+						var btn = document.createElement("BUTTON")
+						btn.appendChild(document.createTextNode("View Message"))
+						btn.onclick = btnclick(i)
 						var parents = [
-							createDiv(window.geemails[i].date.toLocaleDateString(), "date"),
-							aTag,
-							createDiv(window.geemails[i].sender, "sender"),
+							createDiv(window.geemails[i].date.toLocaleDateString(), "date", ""),
+							createDiv(window.geemails[i].subject, "subject", ""),
+							btn,
+							createDiv(window.geemails[i].sender, "sender", ""),
 							createDiv(" ", "clear"),
-							createDiv(window.geemails[i].body, "body body-"+i)
+							createDiv(window.geemails[i].body, "hidden-text", "hidden-text")
 						]
 						for (var j=0; j<parents.length; j++){
 							docFrag.appendChild(parents[j])
@@ -29,14 +29,18 @@
 						document.body.appendChild(div)
 						}
 					}
-				function createDiv(text, name) {
+				function createDiv(text, name, id) {
 					var d = document.createElement("div")
 					d.className = name
+					d.id = id
 					d.appendChild(document.createTextNode(text))
 					return d;
 				}
 
       };
+			function btnclick(i){
+				document.getElementsByClassName("hidden-text")[i].className='visible-text'
+			}
     </script>
 		<title>GeeMail</title>
 	</head>
