@@ -5,22 +5,53 @@
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
-    		displayGeemails()
+    		setup()
+				//setButtons()
+      };
+			var count = 0;
+
+			function loadMessages(){
+				msg = getNewMessage()
+				count++
+				var div = createDiv("", "message", "")
+				var docFrag = document.createDocumentFragment()
+				var btn = document.createElement("BUTTON")
+				btn.appendChild(document.createTextNode("View Message"))
+				btn.id = "btn-"+count
+				var parents = [
+					createDiv(msg.date.toLocaleDateString(), "date", ""),
+					createDiv(msg.subject, "subject", ""),
+					btn,
+					createDiv(msg.sender, "sender", ""),
+					createDiv(" ", "clear"),
+					createDiv(msg, "hidden-text", "hidden-text-"+count)
+				]
+				for (var j=0; j<parents.length; j++){
+					docFrag.appendChild(parents[j])
+				}
+				div.appendChild(docFrag)
+				document.body.appendChild(div)
+				document.getElementById('message-count').innerHTML = count
+			}
+
+			function setup(){
+				displayGeemails()
 
 				function displayGeemails() {
 					for (i=0; i<window.geemails.length; i++) {
+						count++;
 						var div = createDiv("", "message", "")
 						var docFrag = document.createDocumentFragment()
 						var btn = document.createElement("BUTTON")
 						btn.appendChild(document.createTextNode("View Message"))
-						btn.onclick = btnclick(i)
+						btn.id = "btn-"+i
 						var parents = [
 							createDiv(window.geemails[i].date.toLocaleDateString(), "date", ""),
 							createDiv(window.geemails[i].subject, "subject", ""),
 							btn,
 							createDiv(window.geemails[i].sender, "sender", ""),
 							createDiv(" ", "clear"),
-							createDiv(window.geemails[i].body, "hidden-text", "hidden-text")
+							createDiv(window.geemails[i].body, "hidden-text", "hidden-text-"+i)
 						]
 						for (var j=0; j<parents.length; j++){
 							docFrag.appendChild(parents[j])
@@ -29,24 +60,34 @@
 						document.body.appendChild(div)
 						}
 					}
-				function createDiv(text, name, id) {
-					var d = document.createElement("div")
-					d.className = name
-					d.id = id
-					d.appendChild(document.createTextNode(text))
-					return d;
-				}
-
-      };
-			function btnclick(i){
-				document.getElementsByClassName("hidden-text")[i].className='visible-text'
+					document.getElementById('message-count').innerHTML = count
+					setInterval("loadMessages()", 1500)
 			}
+			function createDiv(text, name, id) {
+				var d = document.createElement("div")
+				d.className = name
+				d.id = id
+				d.appendChild(document.createTextNode(text))
+				return d;
+			}
+
+			function setButtons(){
+				for (i=0; i<count; i++){
+					btn = document.getElementById('btn-'+i)
+					btn.onclick = function() {
+						text = document.getElementById("hidden-text-"+i)
+						text.className = 'visible-text'
+					}
+				}
+			}
+
     </script>
 		<title>GeeMail</title>
 	</head>
 	<body>
 		<header>
 			<h1>Welcome to GeeMail!</h1>
+			<h2>You have <span id='message-count'></span> messages.</h2>
 		</header>
 	</body>
 </html>

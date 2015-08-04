@@ -44,8 +44,10 @@ body {
   margin: 0;
 }
 
-header h1{
-  margin-left:33%;
+header h1, h2{
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 10px 10px 10px;
 }
 
 button {
